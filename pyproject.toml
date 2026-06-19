@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "getwinbg"
+version = "0.1.0"
+description = "Retrieve Windows background image paths."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Virati Akiranandhan Reddy" }
+]
+keywords = [
+    "windows",
+    "wallpaper",
+    "background",
+    "desktop",
+    "spotlight",
+    "bing",
+    "Virati Akiranandhan Reddy",
+    "viratiakiranandhanreddy",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Desktop Environment",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "typer>=0.26.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/viratiakiranandhanreddy/getwinbg"
+Repository = "https://github.com/viratiakiranandhanreddy/getwinbg"
+Issues = "https://github.com/viratiakiranandhanreddy/getwinbg/issues"
+
+[project.scripts]
+getwinbg = "getwinbg.cli:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+getwinbg = ["py.typed"]
