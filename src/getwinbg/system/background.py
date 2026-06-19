@@ -1,6 +1,7 @@
 """Windows desktop background retrieval."""
 
 import ctypes
+from pathlib import Path
 from typing import Final
 
 _SPI_GET_DESKTOP_WALLPAPER: Final[int] = 0x0073
@@ -31,3 +32,14 @@ class Background:
             raise Exception("No desktop background is currently set.")
 
         return path
+
+    @staticmethod
+    def _normalize_path(path: str) -> str:
+        """Normalize a background path."""
+
+        path = path.strip()
+
+        if not path:
+            return ""
+
+        return str(Path(path).expanduser())
