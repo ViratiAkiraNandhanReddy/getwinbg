@@ -11,6 +11,16 @@ _BUFFER_SIZE: Final[int] = 512
 class Background:
     """Retrieve the current Windows desktop background."""
 
+    def get_path(self) -> str:
+        """Return the current desktop background path."""
+
+        path = self._normalize_path(self._fetch_path())
+
+        if not self._validate_path(path):
+            raise Exception(f"Invalid background path: {path}")
+
+        return path
+
     def _fetch_path(self) -> str:
         """Retrieve the raw background path from Windows."""
 
