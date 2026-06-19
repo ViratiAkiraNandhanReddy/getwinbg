@@ -43,3 +43,14 @@ class Background:
             return ""
 
         return str(Path(path).expanduser())
+
+    @staticmethod
+    def _validate_path(path: str) -> bool:
+        """Validate that a background path exists and is a file."""
+
+        if not path:
+            return False
+
+        background_path = Path(path)
+
+        return background_path.exists() and background_path.is_file()
