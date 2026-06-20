@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Retrieve Windows background image paths."
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 authors = [
     { name = "Virati Akiranandhan Reddy" }
 ]
@@ -30,9 +30,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Topic :: Desktop Environment",
     "Topic :: Software Development :: Libraries",
