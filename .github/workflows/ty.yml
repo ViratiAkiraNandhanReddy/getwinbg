@@ -1,0 +1,52 @@
+name: ty
+
+on:
+  # Run type checking when Python code or its configuration changes.
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.py'
+      - 'pyproject.toml'
+      - '.github/workflows/ty.yml'
+
+  # Validate pull requests before they are merged into main.
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/*.py'
+      - 'pyproject.toml'
+      - '.github/workflows/ty.yml'
+
+  # Allow type checking to be run manually when needed.
+  workflow_dispatch:
+
+# Cancel outdated runs when new commits are pushed to the same ref.
+# Only the latest commit needs to pass type checking.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# ty only needs read access to the repository.
+permissions:
+  contents: read
+
+jobs:
+  ty:
+    name: ty
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # Fetch the repository so ty can inspect the source tree.
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      # Install uv for managing the project's development environment.
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.3.3
+
+      # Install ty and run type checking.
+      - name: Type check
+        run: uv run --with ty ty check
