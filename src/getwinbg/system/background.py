@@ -36,7 +36,7 @@ class Background:
         if not success:
             raise Exception("Failed to retrieve the current desktop background.")
 
-        path = buffer.value
+        path: str = buffer.value
 
         if not path:
             raise Exception("No desktop background is currently set.")
