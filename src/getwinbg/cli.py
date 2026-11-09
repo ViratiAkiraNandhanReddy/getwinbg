@@ -1,5 +1,16 @@
 import typer
+
+from rich.align import Align
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
+
+from pathlib import Path
+
 from getwinbg.api import get_background
+from getwinbg.__version__ import __version__
+
+console = Console()
 
 app = typer.Typer(
     name="getwinbg",
@@ -7,15 +18,62 @@ app = typer.Typer(
     no_args_is_help=True,
 )
 
+_BANNER = r"""
+                     $$\                   $$\           $$\                 
+                     $$ |                  \__|          $$ |                
+ $$$$$$\   $$$$$$\ $$$$$$\   $$\  $$\  $$\ $$\ $$$$$$$\  $$$$$$$\   $$$$$$\  
+$$  __$$\ $$  __$$\\_$$  _|  $$ | $$ | $$ |$$ |$$  __$$\ $$  __$$\ $$  __$$\ 
+$$ /  $$ |$$$$$$$$ | $$ |    $$ | $$ | $$ |$$ |$$ |  $$ |$$ |  $$ |$$ /  $$ |
+$$ |  $$ |$$   ____| $$ |$$\ $$ | $$ | $$ |$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |
+\$$$$$$$ |\$$$$$$$\  \$$$$  |\$$$$$\$$$$  |$$ |$$ |  $$ |$$$$$$$  |\$$$$$$$ |
+ \____$$ | \_______|  \____/  \_____\____/ \__|\__|  \__|\_______/  \____$$ |
+$$\   $$ |                                                         $$\   $$ |
+\$$$$$$  |                                                         \$$$$$$  |
+ \______/                                                           \______/ 
+"""
+
 
 @app.callback()
 def main() -> None:
     """getwinbg CLI."""
-    pass
+    console.print(
+        Align.center(Text(_BANNER.strip("\n"), style="bold cyan")),
+    )
+    console.print(
+        Align.center(
+            Text.from_markup(
+                "Retrieve Windows background image paths  •  "
+                "[link=https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/"
+                f"tag/v{__version__}]v{__version__}[/link]",
+                style="dim",
+            )
+        ),
+    )
+    console.print()
 
 
 @app.command()
 def background() -> None:
     """Retrieve the current desktop background."""
 
-    typer.echo(get_background())
+    try:
+        path = get_background()
+    except Exception as error:
+        console.print(
+            Panel(
+                f"[bold red]Could not retrieve the desktop background.[/bold red]\n"
+                f"[dim]{error}[/dim]",
+                title="getwinbg",
+                border_style="red",
+            )
+        )
+        raise typer.Exit(code=1) from error
+
+    console.print(
+        Panel(
+            f"[bold green]Current desktop background[/bold green]\n\n"
+            f"[link={Path(path).resolve().as_uri()}]{path}[/link]",
+            title="getwinbg",
+            border_style="cyan",
+        )
+    )
