@@ -6,13 +6,14 @@ customization, navigation, and build behavior.
 """
 
 from datetime import datetime
+from getwinbg.__version__ import __version__
 
 
 # Project metadata shown in page titles, generated notices, and theme
 # navigation. Keep ``release`` synchronized with the package version.
 project = "getwinbg"
 author = "Virati Akiranandhan Reddy"
-release = "0.1.0"
+release = __version__
 version = ".".join(release.split(".")[:2])
 copyright = f"{datetime.now().year} {author}"
 
