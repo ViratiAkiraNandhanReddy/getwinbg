@@ -77,8 +77,8 @@ html_title = "getwinbg"
 html_short_title = "getwinbg"
 html_last_updated_fmt = "%b %d, %Y"
 # The favicon and static directory are supplied by the documentation project.
-html_favicon = "_static/favicon.ico"
-html_static_path = ["_static"]
+# html_favicon = "_static/favicon.ico"
+# html_static_path = ["_static"]
 html_show_sphinx = False
 html_show_copyright = True
 # Avoid exposing source files through the generated site's "view source" links.
