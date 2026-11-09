@@ -6,8 +6,8 @@ customization, navigation, and build behavior.
 """
 
 from datetime import datetime
-from getwinbg.__version__ import __version__
 
+from getwinbg.__version__ import __version__
 
 # Project metadata shown in page titles, generated notices, and theme
 # navigation. Keep ``release`` synchronized with the package version.
@@ -15,7 +15,7 @@ project = "getwinbg"
 author = "Virati Akiranandhan Reddy"
 release = __version__
 version = ".".join(release.split(".")[:2])
-copyright = f"{datetime.now().year} {author}"
+copyright = f"{datetime.now().year} {author}"  # ruff: ignore[A001]
 
 
 # Documentation source configuration. ``root_doc`` identifies the document

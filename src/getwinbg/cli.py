@@ -1,14 +1,13 @@
-import typer
+from pathlib import Path
 
+import typer
 from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-from pathlib import Path
-
-from getwinbg.api import get_background
 from getwinbg.__version__ import __version__
+from getwinbg.api import get_background
 
 console = Console()
 

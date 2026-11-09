@@ -105,5 +105,8 @@ line-ending = "auto"
 [tool.ty.src]
 include = ["src", "tests"]
 
+[tool.ty.environment]
+python-platform = "win32"
+
 [tool.ty.rules]
 all = "error"
