@@ -13,7 +13,11 @@ console = Console()
 
 app = typer.Typer(
     name="getwinbg",
-    help="Retrieve Windows background images.",
+    help=(
+        "Your all-in-one toolkit for exploring Windows wallpapers — "
+        "from current desktop backgrounds and built-in presets to "
+        "cached Bing images and Spotlight collections."
+    ),
     no_args_is_help=True,
 )
 
@@ -41,7 +45,7 @@ def main() -> None:
     console.print(
         Align.center(
             Text.from_markup(
-                "Retrieve Windows background image paths  •  "
+                "Your toolkit for exploring Windows wallpapers  •  "
                 "[link=https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/"
                 f"tag/v{__version__}]v{__version__}[/link]",
                 style="dim",
