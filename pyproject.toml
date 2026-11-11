@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "getwinbg"
 dynamic = ["version"]
-description = "Retrieve Windows background image paths."
+description = "A Python package and CLI for discovering, retrieving, inspecting, and managing Windows desktop backgrounds, built-in wallpapers, cached Bing images, and lock screen Spotlight collections."
 readme = "README.md"
 requires-python = ">=3.13"
 
