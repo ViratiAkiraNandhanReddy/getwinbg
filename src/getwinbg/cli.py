@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Annotated
 
 import typer
 from rich.align import Align
@@ -35,10 +36,23 @@ $$\   $$ |                                                         $$\   $$ |
  \______/                                                           \______/ 
 """
 
+VersionOption = Annotated[
+    bool,
+    typer.Option(
+        "--version",
+        help="Display the current version of getwinbg.",
+    ),
+]
 
-@app.callback()
-def main() -> None:
+
+@app.callback(invoke_without_command=True)
+def main(version: VersionOption = False) -> None:
     """getwinbg CLI."""
+    if version:
+        console.print(Text(f"getwinbg {__version__}"))
+        raise typer.Exit()
+
+    console.print()
     console.print(
         Align.center(Text(_BANNER.strip("\n"), style="bold cyan")),
     )
@@ -60,7 +74,7 @@ def background() -> None:
     """Retrieve the current desktop background."""
 
     try:
-        path = get_background()
+        path = Path(get_background()).resolve()
     except Exception as error:
         console.print(
             Panel(
@@ -75,7 +89,7 @@ def background() -> None:
     console.print(
         Panel(
             f"[bold green]Current desktop background[/bold green]\n\n"
-            f"[link={Path(path).resolve().as_uri()}]{path}[/link]",
+            f"[link={path.as_uri()}]{path}[/link]",
             title="getwinbg",
             border_style="cyan",
         )
