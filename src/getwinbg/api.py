@@ -36,19 +36,12 @@ def get_background() -> str:
 class Background:
     """Retrieve the current Windows desktop background."""
 
-    _manager = _BackgroundManager()
-
     def __init__(self) -> None:
 
-        # Initialize the background path
-        self._path: str = self._manager.get_path()
+        self._manager = _BackgroundManager()
 
     @property
     def path(self) -> str:
         """Return the current desktop background path."""
 
-        # Update the path each time it is accessed to ensure it is current
-        self._path = self._manager.get_path()
-
-        # Return the current desktop background path
-        return self._path
+        return self._manager.get_path()

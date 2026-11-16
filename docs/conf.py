@@ -15,8 +15,7 @@ project = "getwinbg"
 author = "Virati Akiranandhan Reddy"
 release = __version__
 version = ".".join(release.split(".")[:2])
-copyright = f"{datetime.now().year} {author}"  # ruff: ignore[A001]
-
+copyright = f"{datetime.now().year} {author}"  # noqa: A001
 
 # Documentation source configuration. ``root_doc`` identifies the document
 # that Sphinx uses as the entry point for the documentation tree. The suffix

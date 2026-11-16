@@ -1,3 +1,3 @@
-from getwinbg.api import get_background
+from getwinbg.api import Background, get_background
 
-__all__ = ["get_background"]
+__all__ = ["Background", "get_background"]
