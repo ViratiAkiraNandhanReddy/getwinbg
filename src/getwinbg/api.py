@@ -4,6 +4,7 @@ import warnings
 
 from getwinbg.background import _BackgroundManager
 
+
 def get_background() -> str:
     """Return the current Windows desktop background path.
 

@@ -69,8 +69,20 @@ def main(version: VersionOption = False) -> None:
     console.print()
 
 
+RevealOption = Annotated[
+    bool,
+    typer.Option(
+        "--reveal",
+        "-r",
+        help="Reveal the current desktop background.",
+    ),
+]
+
+
 @app.command()
-def background() -> None:
+def background(
+    _reveal: RevealOption = False,
+) -> None:
     """Retrieve the current desktop background."""
 
     try:
@@ -95,3 +107,24 @@ def background() -> None:
             border_style="cyan",
         )
     )
+
+    if _reveal:
+        try:
+            import subprocess
+
+            subprocess.run(["explorer", "/select,", Path(path).resolve()])
+        except Exception as error:
+            console.print(
+                Panel(
+                    f"[bold red]Could not reveal the desktop background.[/bold red]\n"
+                    f"[dim]{error}[/dim]",
+                    title="getwinbg",
+                    border_style="red",
+                )
+            )
+            raise typer.Exit(code=1) from error
+
+        else:
+            console.print(
+                "[dim]Requested File Explorer to reveal the desktop background.[/dim]"
+            )
