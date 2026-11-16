@@ -8,7 +8,7 @@ _SPI_GET_DESKTOP_WALLPAPER: Final[int] = 0x0073
 _BUFFER_SIZE: Final[int] = 512
 
 
-class Background:
+class _BackgroundManager:
     """Retrieve the current Windows desktop background."""
 
     def get_path(self) -> str:
