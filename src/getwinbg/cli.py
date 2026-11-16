@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from getwinbg.__version__ import __version__
-from getwinbg.api import get_background
+from getwinbg.api import Background
 
 console = Console()
 
@@ -74,7 +74,8 @@ def background() -> None:
     """Retrieve the current desktop background."""
 
     try:
-        path = Path(get_background()).resolve()
+        background = Background()
+        path = Path(background.path).resolve()
     except Exception as error:
         console.print(
             Panel(
