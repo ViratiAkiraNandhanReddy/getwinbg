@@ -73,7 +73,10 @@ class _BackgroundManager:
         path = self.get_path()
 
         try:
-            subprocess.run(["explorer", "/select,", path], check=False)
+            subprocess.run(
+                ["explorer", "/select,", path],
+                check=False,
+            )
         except Exception as error:
             raise Exception(
                 "Failed to reveal the current desktop background in File Explorer."
@@ -88,3 +91,20 @@ class _BackgroundManager:
             os.startfile(path)
         except Exception as error:
             raise Exception(f"Could not open the desktop background: {path}") from error
+
+    def copy(self) -> None:
+        """Copy the desktop background path to the Windows clipboard."""
+
+        path = self.get_path()
+
+        try:
+            subprocess.run(
+                ["clip"],
+                input=str(path),
+                text=True,
+                check=True,
+            )
+        except Exception as error:
+            raise Exception(
+                "Failed to copy the current desktop background path to the clipboard."
+            ) from error
