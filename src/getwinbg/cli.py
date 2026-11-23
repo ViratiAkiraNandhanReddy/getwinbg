@@ -36,6 +36,28 @@ $$\   $$ |                                                         $$\   $$ |
  \______/                                                           \______/ 
 """
 
+_TITLE = "getwinbg"
+_BORDER_STYLE = "cyan"
+_ERROR_BORDER_STYLE = "red"
+
+
+class CommandCLI:
+    """Shared presentation helpers for individual CLI command handlers."""
+
+    def __init__(self, console: Console) -> None:
+        self.console = console
+
+    def show_error(self, message: str, error: Exception) -> None:
+        """Display a consistent error message in the CLI."""
+        self.console.print(
+            Panel(
+                f"[bold red]{message}[/bold red]\n[dim]{error}[/dim]",
+                title=_TITLE,
+                border_style=_ERROR_BORDER_STYLE,
+            )
+        )
+
+
 VersionOption = Annotated[
     bool,
     typer.Option(
