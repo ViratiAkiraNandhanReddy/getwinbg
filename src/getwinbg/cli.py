@@ -58,6 +58,33 @@ class CommandCLI:
         )
 
 
+class ApplicationCLI(CommandCLI):
+    """Presentation layer for application-wide CLI output."""
+
+    def show_banner(self) -> None:
+        """Display the application banner and version."""
+        self.console.print()
+        self.console.print(
+            Align.center(
+                Text(
+                    _BANNER.strip("\n"),
+                    style="bold cyan",
+                )
+            )
+        )
+        self.console.print(
+            Align.center(
+                Text.from_markup(
+                    "Your toolkit for exploring Windows wallpapers  •  "
+                    "[link=https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/"
+                    f"tag/v{__version__}]v{__version__}[/link]",
+                    style="dim",
+                )
+            )
+        )
+        self.console.print()
+
+
 VersionOption = Annotated[
     bool,
     typer.Option(
