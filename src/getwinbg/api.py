@@ -50,3 +50,8 @@ class Background:
         """Ask File Explorer to reveal the background file."""
 
         self._manager.reveal()
+
+    def open(self) -> None:
+        """Open the background file with its default application."""
+
+        self._manager.open()

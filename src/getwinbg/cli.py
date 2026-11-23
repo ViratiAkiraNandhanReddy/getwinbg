@@ -111,6 +111,20 @@ class BackgroundCLI(CommandCLI):
             "[dim]Requested File Explorer to reveal the desktop background.[/dim]"
         )
 
+    def open(self, background: Background) -> None:
+        """Open the background file with its default application."""
+        try:
+            background.open()
+        except Exception as error:
+            self.show_error("Could not open the desktop background.", error)
+            raise typer.Exit(code=1) from error
+
+        self.console.print(
+            "[dim]"
+            "Requested the default application to open the desktop background."
+            "[/dim]"
+        )
+
 
 application_cli = ApplicationCLI(console)
 background_cli = BackgroundCLI(console)
@@ -143,10 +157,20 @@ RevealOption = Annotated[
     ),
 ]
 
+OpenOption = Annotated[
+    bool,
+    typer.Option(
+        "--open",
+        "-o",
+        help="Open the current desktop background in the default image viewer.",
+    ),
+]
+
 
 @app.command()
 def background(
     _reveal: RevealOption = False,
+    _open: OpenOption = False,
 ) -> None:
     """Retrieve the current desktop background."""
 
@@ -161,3 +185,6 @@ def background(
 
     if _reveal:
         background_cli.reveal(background)
+
+    if _open:
+        background_cli.open(background)
