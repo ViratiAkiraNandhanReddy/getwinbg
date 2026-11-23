@@ -1,6 +1,7 @@
 """Windows desktop background retrieval."""
 
 import ctypes
+import subprocess
 from pathlib import Path
 from typing import Final
 
