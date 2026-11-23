@@ -64,3 +64,15 @@ class _BackgroundManager:
         background_path = Path(path)
 
         return background_path.exists() and background_path.is_file()
+
+    def reveal(self) -> None:
+        """Ask File Explorer to reveal the background file."""
+
+        path = self.get_path()
+
+        try:
+            subprocess.run(["explorer", "/select,", path], check=False)
+        except Exception as error:
+            raise Exception(
+                "Failed to reveal the current desktop background in File Explorer."
+            ) from error
