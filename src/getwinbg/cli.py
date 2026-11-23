@@ -178,11 +178,21 @@ OpenOption = Annotated[
     ),
 ]
 
+CopyOption = Annotated[
+    bool,
+    typer.Option(
+        "--copy",
+        "-c",
+        help="Copy the current desktop background path to the clipboard.",
+    ),
+]
+
 
 @app.command()
 def background(
     _reveal: RevealOption = False,
     _open: OpenOption = False,
+    _copy: CopyOption = False,
 ) -> None:
     """Retrieve the current desktop background."""
 
@@ -200,3 +210,6 @@ def background(
 
     if _open:
         background_cli.open(background)
+
+    if _copy:
+        background_cli.copy(background)
