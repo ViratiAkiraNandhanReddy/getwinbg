@@ -55,3 +55,8 @@ class Background:
         """Open the background file with its default application."""
 
         self._manager.open()
+
+    def copy(self) -> None:
+        """Copy the desktop background path to the Windows clipboard."""
+
+        self._manager.copy()
