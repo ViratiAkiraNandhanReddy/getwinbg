@@ -85,6 +85,36 @@ class ApplicationCLI(CommandCLI):
         self.console.print()
 
 
+class BackgroundCLI(CommandCLI):
+    """Presentation and interaction layer for the ``background`` command."""
+
+    def display(self, path: Path) -> None:
+        """Display the path of the current desktop background."""
+        self.console.print(
+            Panel(
+                "[bold green]Current desktop background[/bold green]\n\n"
+                f"[link={path.as_uri()}]{path}[/link]",
+                title=_TITLE,
+                border_style=_BORDER_STYLE,
+            )
+        )
+
+    def reveal(self, background: Background) -> None:
+        """Ask File Explorer to reveal the background file."""
+        try:
+            background.reveal()
+        except Exception as error:
+            self.show_error("Could not reveal the desktop background.", error)
+            raise typer.Exit(code=1) from error
+
+        self.console.print(
+            "[dim]Requested File Explorer to reveal the desktop background.[/dim]"
+        )
+
+
+application_cli = ApplicationCLI(console)
+background_cli = BackgroundCLI(console)
+
 VersionOption = Annotated[
     bool,
     typer.Option(
