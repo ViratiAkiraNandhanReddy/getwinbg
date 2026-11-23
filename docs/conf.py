@@ -31,6 +31,7 @@ source_suffix = {
 # MyST adds Markdown support, while the remaining extensions provide copy
 # buttons, reusable design components, and social-sharing metadata.
 extensions = [
+    "sphinx.ext.autodoc",
     "myst_parser",
     "sphinx_copybutton",
     "sphinx_design",
