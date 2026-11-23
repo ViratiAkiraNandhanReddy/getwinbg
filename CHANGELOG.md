@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-11-23
+
+### Added
+
+- Added the `--open` (`-o`) option to open the current desktop background with its default application.
+- Added `Background.open()` to the public Python API.
+- Added `Background.reveal()` to the public Python API.
+- Added dedicated CLI presentation components: `CommandCLI`, `ApplicationCLI`, and `BackgroundCLI`.
+- Added API, CLI, and getting-started documentation pages.
+- Added Sphinx autodoc support for documenting the public Python API.
+
+### Changed
+
+- Extended `_BackgroundManager` with dedicated methods for opening and revealing background files.
+- Refactored the `background` command to delegate display and file operations to `BackgroundCLI`.
+- Centralized CLI error presentation through the shared `CommandCLI` component.
+- Updated the README with the new command options, Python API usage, requirements, and development instructions.
+- Expanded the Sphinx documentation with a getting-started guide, API reference, and CLI reference.
+- Updated the documentation index with navigation and quick-start instructions.
+
+### Improved
+
+- Improved background file operation error reporting with descriptive messages.
+- Improved CLI organization by separating application-level and command-specific presentation logic.
+- Preserved the existing `--reveal` (`-r`) option while supporting combined `--reveal` and `--open` operations.
+- Improved documentation coverage for installation, usage, API methods, and CLI options.
+
+### Deprecated
+
+- Marked `get_background()` as deprecated, recommending `Background().path` instead.
+- Scheduled removal of `get_background()` for version `0.2.0`.
+
 ## [0.1.2] - 2026-11-16
 
 ### Added
@@ -80,8 +112,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Initial project architecture for future wallpaper providers.
 - Repository configuration files (`.editorconfig`, `.gitignore`).
 
-[unreleased]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/compare/v0.1.3...HEAD
 
+[0.1.3]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.3
 [0.1.2]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.2
 [0.1.1]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.0
+
