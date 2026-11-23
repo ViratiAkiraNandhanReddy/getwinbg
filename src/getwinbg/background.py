@@ -1,6 +1,7 @@
 """Windows desktop background retrieval."""
 
 import ctypes
+import os
 import subprocess
 from pathlib import Path
 from typing import Final
@@ -77,3 +78,13 @@ class _BackgroundManager:
             raise Exception(
                 "Failed to reveal the current desktop background in File Explorer."
             ) from error
+
+    def open(self) -> None:
+        """Open the background file with its default application."""
+
+        path = self.get_path()
+
+        try:
+            os.startfile(path)
+        except Exception as error:
+            raise Exception(f"Could not open the desktop background: {path}") from error
