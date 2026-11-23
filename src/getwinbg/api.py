@@ -45,3 +45,8 @@ class Background:
         """Return the current desktop background path."""
 
         return self._manager.get_path()
+
+    def reveal(self) -> None:
+        """Ask File Explorer to reveal the background file."""
+
+        self._manager.reveal()

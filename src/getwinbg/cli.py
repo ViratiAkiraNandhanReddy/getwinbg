@@ -131,21 +131,7 @@ def main(version: VersionOption = False) -> None:
         console.print(Text(f"getwinbg {__version__}"))
         raise typer.Exit()
 
-    console.print()
-    console.print(
-        Align.center(Text(_BANNER.strip("\n"), style="bold cyan")),
-    )
-    console.print(
-        Align.center(
-            Text.from_markup(
-                "Your toolkit for exploring Windows wallpapers  •  "
-                "[link=https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/"
-                f"tag/v{__version__}]v{__version__}[/link]",
-                style="dim",
-            )
-        ),
-    )
-    console.print()
+    application_cli.show_banner()
 
 
 RevealOption = Annotated[
@@ -168,42 +154,10 @@ def background(
         background = Background()
         path = Path(background.path).resolve()
     except Exception as error:
-        console.print(
-            Panel(
-                f"[bold red]Could not retrieve the desktop background.[/bold red]\n"
-                f"[dim]{error}[/dim]",
-                title="getwinbg",
-                border_style="red",
-            )
-        )
+        background_cli.show_error("Could not retrieve the desktop background.", error)
         raise typer.Exit(code=1) from error
 
-    console.print(
-        Panel(
-            f"[bold green]Current desktop background[/bold green]\n\n"
-            f"[link={path.as_uri()}]{path}[/link]",
-            title="getwinbg",
-            border_style="cyan",
-        )
-    )
+    background_cli.display(path)
 
     if _reveal:
-        try:
-            import subprocess
-
-            subprocess.run(["explorer", "/select,", Path(path).resolve()])
-        except Exception as error:
-            console.print(
-                Panel(
-                    f"[bold red]Could not reveal the desktop background.[/bold red]\n"
-                    f"[dim]{error}[/dim]",
-                    title="getwinbg",
-                    border_style="red",
-                )
-            )
-            raise typer.Exit(code=1) from error
-
-        else:
-            console.print(
-                "[dim]Requested File Explorer to reveal the desktop background.[/dim]"
-            )
+        background_cli.reveal(background)
