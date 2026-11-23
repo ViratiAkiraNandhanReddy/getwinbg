@@ -125,6 +125,18 @@ class BackgroundCLI(CommandCLI):
             "[/dim]"
         )
 
+    def copy(self, background: Background) -> None:
+        """Copy the desktop background path to the Windows clipboard."""
+        try:
+            background.copy()
+        except Exception as error:
+            self.show_error("Could not copy the desktop background path.", error)
+            raise typer.Exit(code=1) from error
+
+        self.console.print(
+            "[dim]Copied the desktop background path to the clipboard.[/dim]"
+        )
+
 
 application_cli = ApplicationCLI(console)
 background_cli = BackgroundCLI(console)
