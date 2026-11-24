@@ -45,7 +45,7 @@ jobs:
 
       # Install uv for managing the project's development environment.
       - name: Set up uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
 
       # Install ty and run type checking.
       - name: Type check
