@@ -4,7 +4,8 @@ Retrieve the current Windows desktop background from Python or the command
 line.
 
 `getwinbg` is a lightweight, typed Windows utility that returns the path to
-the current desktop background and can optionally reveal or open it.
+the current desktop background and can optionally reveal or open it, or copy
+its path to the clipboard.
 
 [Read the full documentation](https://getwinbg.readthedocs.io/).
 
@@ -13,6 +14,7 @@ the current desktop background and can optionally reveal or open it.
 * Retrieve the current Windows desktop background path
 * Reveal the background in File Explorer
 * Open the background with its default application
+* Copy the background path to the Windows clipboard
 * Python API and command-line interface
 * Fully typed package (`py.typed`)
 
@@ -59,8 +61,16 @@ Open the file with its default image application:
 getwinbg background --open
 ```
 
-Use `-r` and `-o` as short forms for `--reveal` and `--open`. The global
-`--version` option prints the installed package version:
+Copy the path as text to the Windows clipboard:
+
+```bash
+getwinbg background --copy
+```
+
+Use `-r`, `-o`, and `-c` as short forms for `--reveal`, `--open`, and
+`--copy`. These options can be combined. Copying places the path on the
+clipboard; it does not copy the image file. The global `--version` option
+prints the installed package version:
 
 ```bash
 getwinbg --version
@@ -102,6 +112,7 @@ print(background.path)
 
 background.reveal()
 background.open()
+background.copy()
 ```
 
 Example output:

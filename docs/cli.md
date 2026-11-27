@@ -11,6 +11,15 @@ $ getwinbg background
 
 The command prints the validated path to the current desktop background.
 
+## Copy the background path
+
+```console
+$ getwinbg background --copy
+```
+
+Use `-c` as the short option. This copies the path as text to the Windows
+clipboard; it does not copy the image file.
+
 ## Reveal the background
 
 ```console
@@ -31,8 +40,10 @@ application.
 The options can be combined:
 
 ```console
-$ getwinbg background --reveal --open
+$ getwinbg background --reveal --open --copy
 ```
+
+The command displays the path first, then performs each requested operation.
 
 ## Version
 
@@ -44,4 +55,5 @@ getwinbg 0.1.3
 ## Errors and exit status
 
 When the background cannot be retrieved or an optional file operation fails,
-the CLI displays a formatted error and exits with status `1`.
+the CLI displays a formatted error and exits with status `1`. A clipboard
+failure is reported the same way.

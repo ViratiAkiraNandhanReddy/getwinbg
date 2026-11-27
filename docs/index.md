@@ -17,7 +17,8 @@ cli
 The package provides:
 
 * A Python API through the {py:class}`getwinbg.Background` class.
-* A CLI command for displaying, revealing, or opening the current background.
+* A CLI to display, reveal, open, or copy the current background path, and a
+  Python API to access the path and perform file operations.
 * Path validation so the returned value points to an existing file.
 
 `getwinbg` supports Windows and requires Python 3.13 or newer.
