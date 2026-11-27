@@ -32,7 +32,14 @@ background.reveal()
 background.open()
 ```
 
-Both operations retrieve and validate the current path before acting on it.
+`copy()` copies the path as text to the Windows clipboard, not the image file:
+
+```python
+background.copy()
+```
+
+These operations retrieve and validate the current path before acting on it.
+They raise an exception if the requested operation fails.
 
 ## Deprecated compatibility API
 
