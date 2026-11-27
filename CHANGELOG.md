@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-27
+
+### Added
+
+- Added the `--copy` (`-c`) option to copy the current desktop background path to the Windows clipboard.
+- Added `Background.copy()` to the public Python API.
+- Added clipboard integration using the native Windows `clip` command.
+
+### Changed
+
+- Extended `_BackgroundManager` with clipboard functionality.
+- Updated the `background` command to support copying the background path alongside the existing reveal and open operations.
+- Updated the README to document the new clipboard functionality and command option.
+
+### Improved
+
+- Improved the `background` command with an additional way to access and reuse the current desktop background path.
+- Maintained support for combining `--copy` with the existing `--reveal` (`-r`) and `--open` (`-o`) options.
+
 ## [0.1.3] - 2026-11-23
 
 ### Added
@@ -112,8 +131,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Initial project architecture for future wallpaper providers.
 - Repository configuration files (`.editorconfig`, `.gitignore`).
 
-[unreleased]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/compare/v0.1.3...HEAD
+[unreleased]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/compare/v0.1.4...HEAD
 
+[0.1.4]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.4
 [0.1.3]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.3
 [0.1.2]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.2
 [0.1.1]: https://github.com/ViratiAkiraNandhanReddy/getwinbg/releases/tag/v0.1.1
